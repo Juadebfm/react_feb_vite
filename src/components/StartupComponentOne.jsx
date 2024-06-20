@@ -1,6 +1,11 @@
 import React from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { LuMenuSquare } from "react-icons/lu";
+import Button from "./reusableComponents/Button";
+
+function signIn() {
+  console.log("Sign In Clicked");
+}
 
 const StartupComponentOne = () => {
   return (
@@ -12,10 +17,10 @@ const StartupComponentOne = () => {
             <a href="/">Home</a>
           </li>
           <li>
-            <a href="/">Features</a>
+            <a href="/features">Features</a>
           </li>
           <li>
-            <a href="/">Blog</a>
+            <a href="/about">About</a>
           </li>
           <li>
             <a href="/">Shop</a>
@@ -25,10 +30,17 @@ const StartupComponentOne = () => {
           </li>
         </ul>
         <div className="hidden lg:flex items-center justify-center gap-10">
-          <button className="text-ss_gray">Sign In</button>
-          <button className="bg-ss_green px-8 py-3 rounded-full tracking-wide text-white font-normal text-[16px]">
-            SignUp
-          </button>
+          <Button
+            btnText="SignIn"
+            className="text-ss_gray"
+            onClick={() => signIn()}
+          />
+
+          <Button
+            btnText="SignUp"
+            className="bg-ss_green text-white"
+            onClick={() => console.log("I am the Signup button on the nav")}
+          />
         </div>
         <div className="flex lg:hidden cursor-pointer">
           <LuMenuSquare className="text-4xl cursor-pointer text-ss_blue hover:shadow-lg duration-150 ease-linear transition-shadow" />
@@ -44,12 +56,17 @@ const StartupComponentOne = () => {
           collection!
         </p>
         <div className="flex flex-col space-y-3 mt-14 w-full md:w-[70%] lg:w-auto">
-          <button className="bg-ss_green px-8 py-3 rounded-full tracking-wide text-white font-normal text-[16px]">
-            Purchase Now For 285$
-          </button>
-          <button className="px-8 py-3 rounded-full tracking-wide text-ss_green font-normal text-[16px]">
-            Learn More
-          </button>
+          <Button
+            btnText="Purchase Now For 285$"
+            className="bg-ss_green text-white"
+            onClick={() => console.log("I am the payment button on the Main")}
+          />
+
+          <Button
+            btnText="Learn More"
+            className="text-ss_green font-bold"
+            onClick={() => console.log("I am the Learnmore button on the Main")}
+          />
         </div>
       </main>
     </div>
