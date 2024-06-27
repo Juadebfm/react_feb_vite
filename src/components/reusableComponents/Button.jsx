@@ -1,5 +1,9 @@
 import React from "react";
 
+function add(q, b) {
+  return a + b;
+}
+
 const Button = ({ className, btnText, onClick }) => {
   return (
     <button

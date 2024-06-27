@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { LuMenuSquare } from "react-icons/lu";
 import Button from "./reusableComponents/Button";
@@ -8,11 +8,22 @@ function signIn() {
 }
 
 const StartupComponentOne = () => {
+  // create the hook
+  const [isMenuOpen, setIsMenuOpen] = useState(false); //isMenuOpen = false
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div className="px-[40px] md:px-20 lg:px-28 py-14 lg:py-20 h-screen">
       <nav className="flex items-center justify-between mb-16 md:mb-28 lg:mb-48">
         <div className="text-ss_logo_text text-ss_blue font-bold">Startup3</div>
-        <ul className="hidden lg:flex items-center justify-center gap-10 text-ss_gray ">
+        <ul
+          className={`absolute lg:static bg-ss_blue lg:bg-transparent h-[50vh] lg:h-auto p-16 lg:p-0 top-[130px] right-0 flex-col lg:flex-row w-[70%] text-white lg:flex items-center justify-center gap-10 lg:text-ss_gray ${
+            isMenuOpen ? "flex" : "hidden"
+          }`}
+        >
           <li>
             <a href="/">Home</a>
           </li>
@@ -23,10 +34,12 @@ const StartupComponentOne = () => {
             <a href="/about">About</a>
           </li>
           <li>
-            <a href="/">Shop</a>
+            <a href="/shop">Shop</a>
           </li>
           <li>
-            <IoSearchOutline />
+            <a href="/usestate">
+              <IoSearchOutline />
+            </a>
           </li>
         </ul>
         <div className="hidden lg:flex items-center justify-center gap-10">
@@ -42,7 +55,7 @@ const StartupComponentOne = () => {
             onClick={() => console.log("I am the Signup button on the nav")}
           />
         </div>
-        <div className="flex lg:hidden cursor-pointer">
+        <div className="flex lg:hidden cursor-pointer" onClick={toggleMenu}>
           <LuMenuSquare className="text-4xl cursor-pointer text-ss_blue hover:shadow-lg duration-150 ease-linear transition-shadow" />
         </div>
       </nav>
