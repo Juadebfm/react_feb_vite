@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import { IoSearchOutline } from "react-icons/io5";
 import { LuMenuSquare } from "react-icons/lu";
 import Button from "./reusableComponents/Button";
@@ -8,17 +8,11 @@ function signIn() {
 }
 
 const StartupComponentOne = () => {
-  const menuRef = useRef();
+  // create the hook
+  const [isMenuOpen, setIsMenuOpen] = useState(false); //isMenuOpen = false
 
-  const buttonGroupRef = useRef();
-
-  // Toggle function
   const toggleMenu = () => {
-    if (menuRef.current && buttonGroupRef.current) {
-      const isMenuOpen = menuRef.current.style.display === "block";
-      menuRef.current.style.display = isMenuOpen ? "none" : "block";
-      buttonGroupRef.current.style.display = isMenuOpen ? "none" : "block"; // Hide the button group
-    }
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -26,8 +20,9 @@ const StartupComponentOne = () => {
       <nav className="flex items-center justify-between mb-16 md:mb-28 lg:mb-48">
         <div className="text-ss_logo_text text-ss_blue font-bold">Startup3</div>
         <ul
-          ref={menuRef}
-          className="hidden lg:flex items-center justify-center gap-10 text-ss_gray"
+          className={`absolute lg:static bg-ss_blue lg:bg-transparent h-[50vh] lg:h-auto p-16 lg:p-0 top-[130px] right-0 flex-col lg:flex-row w-[70%] text-white lg:flex items-center justify-center gap-10 lg:text-ss_gray ${
+            isMenuOpen ? "flex" : "hidden"
+          }`}
         >
           <li>
             <a href="/">Home</a>
@@ -47,10 +42,7 @@ const StartupComponentOne = () => {
             </a>
           </li>
         </ul>
-        <div
-          className="hidden lg:flex items-center justify-center gap-10"
-          ref={buttonGroupRef}
-        >
+        <div className="hidden lg:flex items-center justify-center gap-10">
           <Button
             btnText="SignIn"
             className="text-ss_gray"
